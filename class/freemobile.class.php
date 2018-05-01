@@ -79,6 +79,15 @@ class FreeMobile{
     }
 
     /**
+     * @return string
+     */
+    private function sanitizeBody()
+    {
+        $body = urlencode($this->body);
+        return $body;
+    }
+
+    /**
      * @return int
      *
      *  200 : Success
@@ -93,9 +102,8 @@ class FreeMobile{
      *
      */
     public function sendSMS(){
-
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://smsapi.free-mobile.fr/sendmsg?user=" . $this->login . "&pass=" . $this->apikey . "&msg=" . $this->body);
+        curl_setopt($ch, CURLOPT_URL, "https://smsapi.free-mobile.fr/sendmsg?user=" . $this->login . "&pass=" . $this->apikey . "&msg=" . $this->sanitizeBody());
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
