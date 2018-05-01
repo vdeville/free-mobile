@@ -4,11 +4,12 @@ require_once 'class/freemobile.class.php';
 
 $sms = new FreeMobile();
 
-$sms->setLogin('');
-$sms->setApikey('');
+$sms->setLogin('')->setApikey('');
 
-$backspace = "%0a";
-$sms->setBody("Welcome," . $backspace . "If you receive this SMS, your application work !");
+$sms->setBody(
+"Welcome,
+If you receive this SMS, your application work !"
+);
 
 $result = $sms->sendSMS();
 
